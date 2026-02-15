@@ -11,30 +11,47 @@
 body{
     margin:0;
     font-family:'Orbitron', sans-serif;
-    background: linear-gradient(135deg,#e0f7fa,#c8e6c9,#fffde7);
+    background: linear-gradient(160deg,#e0f7fa,#b2ebf2,#ffffff);
     color:#102027;
     text-align:center;
     overflow-x:hidden;
+    position:relative;
+}
+
+/* ===== Canvas de partículas ===== */
+#bgCanvas{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:-1;
 }
 
 /* ===== ROYAL 3D giratório ===== */
 .title-container{
     perspective:1200px;
-    margin-top:60px;
+    margin-top:50px;
 }
 
 .title{
-    font-size:80px;
+    font-size:90px;
     font-weight:900;
     letter-spacing:6px;
     color:#00796b;
     transform-style: preserve-3d;
-    animation:rotate3d 12s linear infinite;
+    animation:rotate3d 15s linear infinite, glow 3s ease-in-out infinite alternate;
 }
 
 @keyframes rotate3d{
     0%{transform:rotateY(0deg);}
     100%{transform:rotateY(360deg);}
+}
+
+@keyframes glow{
+    0%{text-shadow:0 0 10px #004d40,0 0 20px #00796b;}
+    50%{text-shadow:0 0 25px #004d40,0 0 40px #00796b;}
+    100%{text-shadow:0 0 10px #004d40,0 0 20px #00796b;}
 }
 
 /* ===== Seção ===== */
@@ -43,48 +60,58 @@ body{
     display:flex;
     flex-wrap:wrap;
     justify-content:center;
-    gap:20px;
+    gap:25px;
 }
 
-/* ===== Cards minimalistas ===== */
+/* ===== Cards estilo Aero ===== */
 .card{
     background:#ffffff;
     padding:25px;
-    width:300px;
-    border-radius:20px;
-    box-shadow:0 8px 20px rgba(0,0,0,0.1);
+    width:280px;
+    border-radius:25px;
+    box-shadow:0 15px 30px rgba(0,0,0,0.1);
     border:1px solid #b2dfdb;
-    transition:0.4s;
+    transition:0.5s;
+    transform-style: preserve-3d;
+    animation:float 4s ease-in-out infinite;
 }
 
 .card:hover{
-    transform:translateY(-8px) scale(1.03);
-    box-shadow:0 15px 35px rgba(0,0,0,0.2);
+    transform:translateY(-10px) scale(1.05);
+    box-shadow:0 25px 45px rgba(0,0,0,0.2);
+}
+
+@keyframes float{
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-8px);}
+    100%{transform:translateY(0);}
 }
 
 .price{
-    font-size:22px;
+    font-size:24px;
     color:#00796b;
     margin:10px 0;
     font-weight:bold;
 }
 
-/* ===== Botões ===== */
+/* ===== Botões Aero ===== */
 button{
-    padding:10px 20px;
+    padding:12px 25px;
     background:#00796b;
     border:none;
-    border-radius:12px;
+    border-radius:15px;
     font-weight:bold;
     cursor:pointer;
     color:white;
-    transition:0.3s;
+    transition:0.4s;
     margin:5px 0;
+    box-shadow:0 5px 15px rgba(0,121,107,0.3);
 }
 
 button:hover{
-    transform:scale(1.05);
+    transform:scale(1.07);
     background:#004d40;
+    box-shadow:0 10px 25px rgba(0,121,107,0.5);
 }
 
 /* ===== Conteúdo escondido ===== */
@@ -100,16 +127,16 @@ button:hover{
 #adminPanel{
     display:none;
     margin-top:30px;
-    padding:20px;
+    padding:25px;
     background:#e0f7fa;
     border:1px solid #b2dfdb;
-    border-radius:12px;
+    border-radius:15px;
     color:#004d40;
 }
 
 input{
-    padding:8px 12px;
-    border-radius:8px;
+    padding:10px 15px;
+    border-radius:12px;
     border:1px solid #b2dfdb;
     margin:5px;
     background:#ffffff;
@@ -123,7 +150,7 @@ input::placeholder{
 
 /* ===== Footer ===== */
 footer{
-    margin-top:40px;
+    margin-top:50px;
     padding:20px;
     font-size:14px;
     color:#004d40;
@@ -133,13 +160,15 @@ footer{
 
 <body>
 
+<canvas id="bgCanvas"></canvas>
+
 <div class="title-container">
     <div class="title"><b>ROYAL💎</b></div>
 </div>
 
 <div class="section">
 
-<!-- ===== 6 Catalogos ===== -->
+<!-- ===== 6 Catálogos ===== -->
 <div class="card">
     <h2 id="titulo1">Catálogo 1</h2>
     <div class="price" id="price1">25$</div>
@@ -231,10 +260,48 @@ footer{
 </div>
 
 <footer>
-© 2026 ROYAL - Frudiger Aero
+© 2026 ROYAL - Frudiger Aero Exagerado
 </footer>
 
 <script>
+// ===== Partículas Aero =====
+const canvas = document.getElementById('bgCanvas');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+for(let i=0;i<80;i++){
+    particles.push({
+        x: Math.random()*canvas.width,
+        y: Math.random()*canvas.height,
+        r: Math.random()*2+1,
+        dx: (Math.random()-0.5)*0.3,
+        dy: (Math.random()-0.5)*0.3
+    });
+}
+
+function animate(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    for(let p of particles){
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fillStyle='rgba(0,121,107,0.4)';
+        ctx.fill();
+        p.x += p.dx;
+        p.y += p.dy;
+        if(p.x<0 || p.x>canvas.width) p.dx*=-1;
+        if(p.y<0 || p.y>canvas.height) p.dy*=-1;
+    }
+    requestAnimationFrame(animate);
+}
+animate();
+window.addEventListener('resize',()=>{
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+
+// ===== ROYAL e Cards =====
 const senhaAdmin = "171";
 
 function unlock(level){
