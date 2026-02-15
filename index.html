@@ -3,150 +3,141 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Clara Xits</title>
+<title>ROYAL</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #0f0f0f, #1a1a1a, #111);
-    color: white;
-    text-align: center;
+body{
+    margin:0;
+    background: radial-gradient(circle at center, #0a0f1f, #000814);
+    font-family: Arial, sans-serif;
+    color:white;
+    text-align:center;
+    overflow-x:hidden;
 }
 
-header {
-    padding: 40px 20px;
-    background: linear-gradient(90deg, #ff0033, #9900ff);
-    font-size: 28px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    animation: fadeIn 1.5s ease-in-out;
+/* 3D Title */
+.title-container{
+    perspective:1000px;
+    margin-top:80px;
 }
 
-.section {
-    padding: 30px 20px;
+.title{
+    font-size:50px;
+    font-weight:bold;
+    color:#00bfff;
+    animation: rotate3d 6s infinite linear, glow 2s infinite alternate;
+    transform-style:preserve-3d;
 }
 
-.section h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
-    border-bottom: 2px solid #444;
-    display: inline-block;
-    padding-bottom: 5px;
+@keyframes rotate3d{
+    from{transform:rotateY(0deg);}
+    to{transform:rotateY(360deg);}
 }
 
-.card {
-    background: #1e1e1e;
-    margin: 15px auto;
-    padding: 20px;
-    border-radius: 12px;
-    width: 90%;
-    max-width: 400px;
-    box-shadow: 0 0 15px rgba(255, 0, 100, 0.3);
-    transition: 0.3s;
-    animation: slideUp 0.8s ease forwards;
+@keyframes glow{
+    from{text-shadow:0 0 10px #00bfff;}
+    to{text-shadow:0 0 30px #0099ff;}
 }
 
-.card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 25px rgba(255, 0, 150, 0.6);
+/* Cards */
+.section{
+    margin-top:60px;
 }
 
-.button {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 10px 20px;
-    background: linear-gradient(90deg, #ff0033, #9900ff);
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: bold;
-    transition: 0.3s;
+.card{
+    background: linear-gradient(145deg,#0a1a33,#000c1a);
+    margin:20px auto;
+    padding:25px;
+    width:90%;
+    max-width:400px;
+    border-radius:15px;
+    box-shadow:0 0 20px rgba(0,191,255,0.3);
+    transition:0.4s;
 }
 
-.button:hover {
-    opacity: 0.8;
+.card:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 30px rgba(0,191,255,0.8);
 }
 
-footer {
-    margin-top: 40px;
-    padding: 20px;
-    background: #111;
-    font-size: 14px;
-    opacity: 0.6;
+.price{
+    font-size:22px;
+    color:#00bfff;
+    margin:10px 0;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+button{
+    padding:10px 20px;
+    background:#00bfff;
+    border:none;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
 }
 
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
+button:hover{
+    background:#0099ff;
+}
+
+/* Hidden content */
+.hidden{
+    display:none;
+    margin-top:15px;
+    font-size:14px;
+    text-align:left;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-🔥 CLARA XITS 🔥
-</header>
-
-<div class="section">
-<h2>📱 iOS</h2>
-
-<div class="card">
-<h3>Painel iOS</h3>
-<a href="#" class="button">Comprar</a>
-</div>
-
-<div class="card">
-<h3>Auxílio iOS</h3>
-<a href="#" class="button">Comprar</a>
-</div>
-
-<div class="card">
-<h3>HS Pescoço iOS</h3>
-<a href="#" class="button">Comprar</a>
-</div>
-
+<div class="title-container">
+    <div class="title">ROYAL💎</div>
 </div>
 
 <div class="section">
-<h2>🤖 Android</h2>
 
 <div class="card">
-<h3>Painel Android</h3>
-<a href="#" class="button">Comprar</a>
-</div>
-
-<div class="card">
-<h3>Auxílio Android</h3>
-<a href="#" class="button">Comprar</a>
-</div>
-
-<div class="card">
-<h3>Repassador de Replay Android</h3>
-<a href="#" class="button">Comprar</a>
+    <h2>Nível 1</h2>
+    <div class="price">25$</div>
+    <button onclick="unlock(1)">Comprar</button>
+    <div id="content1" class="hidden">
+        • Beber 2L de água por dia<br>
+        • Cortar refrigerante<br>
+        • Caminhar 30min diários<br>
+    </div>
 </div>
 
 <div class="card">
-<h3>HS Pescoço Android</h3>
-<a href="#" class="button">Comprar</a>
+    <h2>Nível 2</h2>
+    <div class="price">45$</div>
+    <button onclick="unlock(2)">Comprar</button>
+    <div id="content2" class="hidden">
+        • Dieta balanceada<br>
+        • Treino HIIT 3x semana<br>
+        • Dormir 8h por noite<br>
+    </div>
 </div>
 
 <div class="card">
-<h3>Bypass Android</h3>
-<a href="#" class="button">Comprar</a>
+    <h2>Nível 3</h2>
+    <div class="price">65$</div>
+    <button onclick="unlock(3)">Comprar</button>
+    <div id="content3" class="hidden">
+        • Plano alimentar completo<br>
+        • Treino personalizado<br>
+        • Controle calórico diário<br>
+    </div>
 </div>
 
 </div>
 
-<footer>
-© 2026 Clara Xits - Todos os direitos reservados
-</footer>
+<script>
+function unlock(level){
+    document.getElementById("content"+level).style.display="block";
+}
+</script>
 
 </body>
 </html>
