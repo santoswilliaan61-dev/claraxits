@@ -7,13 +7,12 @@
 <style>
 /* Reset e base */
 * { margin:0; padding:0; box-sizing:border-box; font-family: 'Arial', sans-serif; }
-body, html { height:100%; overflow-x:hidden; background: black; color:#fff; }
+body, html { height:100%; overflow-x:hidden; background:black; color:#fff; position:relative; }
 
 /* Fundo com foto de perfil */
 body {
   background: url('A_digital_logo_design_features_the_words_"Surf_Sit.png') no-repeat center center fixed;
   background-size: cover;
-  position: relative;
 }
 
 /* Overlay futurista */
@@ -22,33 +21,41 @@ body::before {
   background: rgba(0,0,0,0.6); z-index:0;
 }
 
-/* Menu */
-nav {
-  display:flex; justify-content:space-between; align-items:center; padding:15px 30px;
-  background: rgba(0,0,0,0.5); position:fixed; width:100%; top:0; z-index:5; backdrop-filter: blur(10px);
+/* Top Menu */
+#menuBtn {
+  position:fixed; top:15px; left:15px; z-index:10; background:#00f; color:#fff;
+  border:none; border-radius:10px; padding:10px 15px; cursor:pointer;
+  font-weight:bold; box-shadow:0 0 10px #0ff;
 }
-nav .logo { font-size:1.5em; font-weight:bold; perspective: 1000px; }
-nav ul { display:flex; list-style:none; gap:20px; }
-nav ul li { cursor:pointer; position:relative; }
-nav ul li::after {
-  content:""; position:absolute; bottom:-5px; left:0; width:0; height:2px; background:#00f; transition:0.3s;
+#menuPanel {
+  position:fixed; top:50px; left:15px; background: rgba(0,0,50,0.9);
+  padding:20px; border-radius:15px; display:none; flex-direction:column; gap:10px;
+  z-index:10; box-shadow:0 0 20px #0ff;
 }
-nav ul li:hover::after { width:100%; }
+#menuPanel button {
+  padding:10px; border:none; border-radius:10px; background:#0ff; color:#000;
+  font-weight:bold; cursor:pointer; transition:0.3s;
+}
+#menuPanel button:hover { background:#00f; color:#fff; }
 
-/* 3D girando */
-.logo span {
-  display:inline-block;
-  animation: rotate3D 10s linear infinite;
+/* Logo girando futurista */
+.logo {
+  text-align:center; margin-top:100px; font-size:3em; font-weight:bold;
+  color:#00f; text-shadow:0 0 15px #0ff,0 0 30px #00f,0 0 60px #0ff;
+  perspective:1000px;
 }
-@keyframes rotate3D {
+.logo span {
+  display:inline-block; animation: rotateLogo 8s linear infinite;
+}
+@keyframes rotateLogo {
   0% { transform: rotateY(0deg); }
   100% { transform: rotateY(360deg); }
 }
 
 /* Cards futuristas */
 .cards {
-  display:flex; flex-direction: column; align-items:center; gap:25px;
-  margin-top:120px; z-index:2; position:relative;
+  display:flex; flex-direction:column; align-items:center; gap:25px;
+  margin-top:50px; z-index:2; position:relative;
 }
 .card {
   background: rgba(0,123,255,0.6);
@@ -60,6 +67,7 @@ nav ul li:hover::after { width:100%; }
   text-align:center;
   box-shadow:0 0 20px #0ff,0 0 40px #00f inset;
   transition: transform 0.3s, box-shadow 0.3s;
+  animation: floatCard 4s ease-in-out infinite;
 }
 .card:hover { transform: translateY(-10px) scale(1.05); box-shadow:0 0 25px #0ff,0 0 50px #0ff inset; }
 .card h2 { font-size:1.3em; margin-bottom:5px; }
@@ -76,46 +84,49 @@ button.buy {
 }
 button.buy:hover { transform:scale(1.1); box-shadow:0 0 20px #0ff,0 0 40px #0ff inset; }
 
-/* Login modal */
+/* Footer */
+footer { position:fixed; bottom:10px; right:10px; font-weight:bold; z-index:5; }
+
+/* Login modal futurista */
 .modal {
-  display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8);
-  justify-content:center; align-items:center; z-index:10;
+  display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+  background:rgba(0,0,0,0.9); justify-content:center; align-items:center; z-index:10;
 }
 .modal-content {
-  background: rgba(0,0,50,0.9); padding:30px; border-radius:20px; width:90%; max-width:400px;
+  background: rgba(0,0,50,0.95); padding:30px; border-radius:20px; width:90%; max-width:400px;
   display:flex; flex-direction:column; gap:15px; box-shadow:0 0 20px #0ff;
 }
-.modal-content h3 { text-align:center; }
+.modal-content h3 { text-align:center; text-shadow:0 0 10px #0ff; }
 .modal-content input { padding:10px; border-radius:10px; border:none; }
 .modal-content button { padding:10px; border:none; border-radius:15px; background:#0ff; color:#000; cursor:pointer; font-weight:bold; transition:0.3s; }
 .modal-content button:hover { background:#00f; color:#fff; }
 
-/* Footer */
-footer { position:fixed; bottom:10px; right:10px; font-weight:bold; z-index:5; }
-
 /* Responsivo */
 @media (max-width:480px){
-  .cards { margin-top:100px; gap:15px; }
+  .cards { margin-top:80px; gap:15px; }
   .card { width:90%; padding:15px; }
   button.buy { width:100%; }
-  nav ul { gap:10px; }
+}
+@keyframes floatCard {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="logo"><span>🏄🏽‍♂️ Surf Sites</span></div>
-  <ul>
-    <li onclick="scrollToSection('home')">Home</li>
-    <li onclick="scrollToSection('planos')">Planos</li>
-    <li onclick="showLogin('normal')">Login</li>
-    <li onclick="showLogin('admin')">Admin</li>
-  </ul>
-</nav>
+<!-- Menu superior esquerdo -->
+<button id="menuBtn" onclick="toggleMenu()">Menu</button>
+<div id="menuPanel">
+  <button onclick="showLogin()">Login Admin</button>
+  <button onclick="logout()">Sair</button>
+</div>
 
-<main id="home">
-  <div class="cards" id="planos">
+<!-- Logo 3D girando -->
+<div class="logo"><span>🏄🏽‍♂️ Surf Sites</span></div>
+
+<main>
+  <div class="cards">
     <div class="card" id="card1">
       <h2>Site Básico</h2>
       <p>Para diversão</p>
@@ -139,10 +150,10 @@ footer { position:fixed; bottom:10px; right:10px; font-weight:bold; z-index:5; }
 
 <footer>@surf.site</footer>
 
-<!-- Login modal -->
+<!-- Login Admin -->
 <div class="modal" id="loginModal">
   <div class="modal-content">
-    <h3 id="loginTitle">Login</h3>
+    <h3>Login Admin</h3>
     <input type="text" id="userName" placeholder="Usuário">
     <input type="password" id="userPass" placeholder="Senha">
     <button onclick="login()">Entrar</button>
@@ -151,36 +162,34 @@ footer { position:fixed; bottom:10px; right:10px; font-weight:bold; z-index:5; }
 </div>
 
 <script>
-// Scroll simples
-function scrollToSection(id){
-  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+// Menu
+function toggleMenu(){
+  const panel = document.getElementById('menuPanel');
+  panel.style.display = panel.style.display==='flex'?'none':'flex';
 }
 
-// Modal login
-let currentLogin = 'normal';
-function showLogin(type){
-  currentLogin = type;
-  document.getElementById('loginTitle').innerText = type==='admin'?'Login Admin (Modo Deus)':'Login Usuário';
-  document.getElementById('loginModal').style.display='flex';
-}
+// Login Admin
+function showLogin(){ document.getElementById('loginModal').style.display='flex'; }
 function closeLogin(){ document.getElementById('loginModal').style.display='none'; }
+function logout(){ alert('Você saiu da conta!'); }
 
-// Login
+// Login logic
 function login(){
   const user = document.getElementById('userName').value;
   const pass = document.getElementById('userPass').value;
-  if(currentLogin==='admin'){
-    if(pass==='171'){ alert('Modo Deus ativado!'); closeLogin(); }
-    else alert('Senha incorreta!');
+  if(user==='Royal' && pass==='171R'){
+    alert('Bem-vindo Admin! Modo Deus ativado!');
+    closeLogin();
+    // Aqui você pode liberar funções de Modo Deus
   }else{
-    alert(`Bem-vindo ${user}!`); closeLogin();
+    alert('Usuário ou senha incorretos!');
   }
 }
 
-// Botão comprar
-function buyPlan(nome,preco){
+// Botões de compra
+function buyPlan(nome, preco){
   alert(`Você selecionou o plano ${nome} por ${preco}. Redirecionando para pagamento...`);
-  // Aqui você pode colocar link de pagamento real (ex: Stripe, PayPal)
+  // Aqui você pode integrar Stripe/PayPal
 }
 </script>
 
