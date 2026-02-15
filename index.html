@@ -3,54 +3,87 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CLARA XITS</title>
+<title>Clara Xits</title>
 
 <style>
-body{
-    margin:0;
-    font-family: Arial, sans-serif;
-    background: black;
-    color:#ff2e88;
-    text-align:center;
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0f0f0f, #1a1a1a, #111);
+    color: white;
+    text-align: center;
 }
 
-header{
-    padding:40px 20px;
-    background:#0a0a0a;
+header {
+    padding: 40px 20px;
+    background: linear-gradient(90deg, #ff0033, #9900ff);
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    animation: fadeIn 1.5s ease-in-out;
 }
 
-header h1{
-    font-size:38px;
-    letter-spacing:4px;
-    animation: glow 2s infinite alternate;
+.section {
+    padding: 30px 20px;
 }
 
-header span{
-    font-size:60px;
+.section h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    border-bottom: 2px solid #444;
+    display: inline-block;
+    padding-bottom: 5px;
 }
 
-@keyframes glow{
-    from{ text-shadow:0 0 10px #ff2e88; }
-    to{ text-shadow:0 0 25px #ff2e88; }
+.card {
+    background: #1e1e1e;
+    margin: 15px auto;
+    padding: 20px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 0 15px rgba(255, 0, 100, 0.3);
+    transition: 0.3s;
+    animation: slideUp 0.8s ease forwards;
 }
 
-.section{
-    margin:30px;
-    padding:20px;
-    border:1px solid #ff2e88;
-    border-radius:12px;
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(255, 0, 150, 0.6);
 }
 
-.section h2{
-    border-bottom:1px solid #ff2e88;
-    padding-bottom:10px;
+.button {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: linear-gradient(90deg, #ff0033, #9900ff);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 0.3s;
 }
 
-.item{
-    background:#111;
-    margin:15px 0;
-    padding:15px;
-    border-radius:8px;
+.button:hover {
+    opacity: 0.8;
+}
+
+footer {
+    margin-top: 40px;
+    padding: 20px;
+    background: #111;
+    font-size: 14px;
+    opacity: 0.6;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 </style>
 </head>
@@ -58,27 +91,62 @@ header span{
 <body>
 
 <header>
-    <h1>CLARA XITS</h1>
-    <span>👺</span>
+🔥 CLARA XITS 🔥
 </header>
 
-<h2>😈👻 CATÁLOGO</h2>
-
 <div class="section">
-    <h2>📱 iOS</h2>
-    <div class="item">Painel iOS — 55,99$</div>
-    <div class="item">Auxílio iOS — 30,99$</div>
-    <div class="item">HS Pescoço iOS — 69,99$</div>
+<h2>📱 iOS</h2>
+
+<div class="card">
+<h3>Painel iOS</h3>
+<a href="#" class="button">Comprar</a>
+</div>
+
+<div class="card">
+<h3>Auxílio iOS</h3>
+<a href="#" class="button">Comprar</a>
+</div>
+
+<div class="card">
+<h3>HS Pescoço iOS</h3>
+<a href="#" class="button">Comprar</a>
+</div>
+
 </div>
 
 <div class="section">
-    <h2>🤖 Android</h2>
-    <div class="item">Painel Android — 45,99$</div>
-    <div class="item">Auxílio Android — 34,99$</div>
-    <div class="item">Repassador de Replay Android — 15,99$</div>
-    <div class="item">HS Pescoço Android — 55,99$</div>
-    <div class="item">Bypass Android — 10,99$</div>
+<h2>🤖 Android</h2>
+
+<div class="card">
+<h3>Painel Android</h3>
+<a href="#" class="button">Comprar</a>
 </div>
+
+<div class="card">
+<h3>Auxílio Android</h3>
+<a href="#" class="button">Comprar</a>
+</div>
+
+<div class="card">
+<h3>Repassador de Replay Android</h3>
+<a href="#" class="button">Comprar</a>
+</div>
+
+<div class="card">
+<h3>HS Pescoço Android</h3>
+<a href="#" class="button">Comprar</a>
+</div>
+
+<div class="card">
+<h3>Bypass Android</h3>
+<a href="#" class="button">Comprar</a>
+</div>
+
+</div>
+
+<footer>
+© 2026 Clara Xits - Todos os direitos reservados
+</footer>
 
 </body>
 </html>
