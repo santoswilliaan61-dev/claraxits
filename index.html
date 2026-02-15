@@ -3,109 +3,237 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ROYAL FF 🔥</title>
+<title>ROYAL 💎 Frudiger Aero</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 
 <style>
 body{
     margin:0;
     font-family:'Orbitron', sans-serif;
-    background:linear-gradient(135deg,#000000,#1a0033,#330066);
-    color:white;
+    background: linear-gradient(135deg, #e0f7fa, #c8e6c9, #fffde7);
+    color:#102027;
     text-align:center;
+    overflow-x:hidden;
 }
 
-/* Título principal */
-.logo{
+/* ROYAL 3D giratório estilo aero */
+.title-container{
+    perspective:1200px;
+    margin-top:60px;
+}
+
+.title{
     font-size:70px;
     font-weight:900;
-    margin-top:60px;
-    background:linear-gradient(45deg,#ff0000,#ff8800,#ff0000);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-    animation:glow 2s infinite alternate;
+    letter-spacing:4px;
+    color:#00796b;
+    transform-style: preserve-3d;
+    animation:rotate3d 10s linear infinite;
 }
 
-@keyframes glow{
-    from{ text-shadow:0 0 10px #ff0000; }
-    to{ text-shadow:0 0 30px #ff8800; }
+@keyframes rotate3d{
+    0%{transform:rotateY(0deg);}
+    100%{transform:rotateY(360deg);}
 }
 
-/* Cards */
+/* Cards minimalistas */
+.section{
+    margin-top:50px;
+}
+
 .card{
-    background:#111;
-    margin:30px auto;
+    background: #ffffff;
+    margin:25px auto;
     padding:25px;
     width:90%;
     max-width:400px;
     border-radius:15px;
-    box-shadow:0 0 20px rgba(255,0,0,0.5);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     transition:0.3s;
+    border: 1px solid #b2dfdb;
 }
 
 .card:hover{
-    transform:scale(1.05);
-    box-shadow:0 0 40px rgba(255,136,0,0.8);
+    transform:translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.price{
+    font-size:22px;
+    color:#00796b;
+    margin:15px 0;
+    font-weight:bold;
 }
 
 button{
-    padding:12px 25px;
-    background:linear-gradient(90deg,#ff0000,#ff8800);
+    padding:10px 20px;
+    background:#00796b;
     border:none;
-    border-radius:10px;
-    color:white;
+    border-radius:8px;
     font-weight:bold;
     cursor:pointer;
+    color:white;
     transition:0.3s;
+    margin:5px 0;
 }
 
 button:hover{
-    transform:scale(1.1);
+    background:#004d40;
+}
+
+.hidden{
+    display:none;
+    margin-top:15px;
+    text-align:left;
+    line-height:1.6;
+    color:#004d40;
+}
+
+#adminPanel{
+    display:none;
+    margin-top:30px;
+    padding:20px;
+    background:#e0f7fa;
+    border:1px solid #b2dfdb;
+    border-radius:12px;
+    color:#004d40;
+}
+
+input{
+    padding:8px 12px;
+    border-radius:8px;
+    border:1px solid #b2dfdb;
+    margin:5px;
+    background:#ffffff;
+    color:#004d40;
+    font-weight:bold;
+}
+
+input::placeholder{
+    color:#00796b;
 }
 
 footer{
-    margin-top:50px;
+    margin-top:40px;
     padding:20px;
     font-size:14px;
-    color:#ff8800;
+    color:#004d40;
 }
 </style>
 </head>
 
 <body>
 
-<div class="logo">ROYAL FF 🔥</div>
+<div class="title-container">
+    <div class="title"><b>ROYAL💎</b></div>
+</div>
 
+<div class="section">
 <div class="card">
-    <h2>Dicas de Headshot</h2>
-    <p>Mire no peito e puxe levemente para cima para subir capa.</p>
+    <h2 id="titulo1">Nível 1</h2>
+    <div class="price" id="price1">25$</div>
+    <button onclick="unlock(1)">Desbloquear</button>
+    <div id="content1" class="hidden">Guia Básico de Emagrecimento</div>
 </div>
 
 <div class="card">
-    <h2>Sensibilidade Recomendada</h2>
-    <p>Geral: 95<br>
-    Red Dot: 90<br>
-    2x: 85<br>
-    4x: 80<br>
-    AWM: 50</p>
+    <h2 id="titulo2">Nível 2</h2>
+    <div class="price" id="price2">45$</div>
+    <button onclick="unlock(2)">Desbloquear</button>
+    <div id="content2" class="hidden">Plano Intermediário</div>
 </div>
 
 <div class="card">
-    <h2>Treino Diário</h2>
-    <p>Treine 15 minutos por dia no modo treinamento para melhorar reflexo e precisão.</p>
+    <h2 id="titulo3">Nível 3</h2>
+    <div class="price" id="price3">65$</div>
+    <button onclick="unlock(3)">Desbloquear</button>
+    <div id="content3" class="hidden">Plano Avançado</div>
+</div>
 </div>
 
-<div class="card">
-    <h2>Contato</h2>
-    <p>WhatsApp: 12988729004</p>
-    <button onclick="window.open('https://wa.me/5512988729004','_blank')">
-        Falar no WhatsApp
-    </button>
+<!-- Contato -->
+<div style="margin-top:30px;">
+<p>Contato: <b>12988729004</b></p>
+</div>
+
+<!-- Login Admin -->
+<div style="margin-top:30px;">
+<input type="password" id="senha" placeholder="Senha Admin">
+<button onclick="login()">Entrar</button>
+</div>
+
+<!-- Painel Modo Deus -->
+<div id="adminPanel">
+<h3>Modo Deus 👑</h3>
+
+<h4>Preços</h4>
+<input type="number" id="novoPreco1" placeholder="Novo preço Nível 1">
+<input type="number" id="novoPreco2" placeholder="Novo preço Nível 2">
+<input type="number" id="novoPreco3" placeholder="Novo preço Nível 3">
+
+<h4>Textos</h4>
+<input type="text" id="novoTitulo1" placeholder="Novo título Nível 1">
+<input type="text" id="novoConteudo1" placeholder="Novo conteúdo Nível 1">
+<br>
+<input type="text" id="novoTitulo2" placeholder="Novo título Nível 2">
+<input type="text" id="novoConteudo2" placeholder="Novo conteúdo Nível 2">
+<br>
+<input type="text" id="novoTitulo3" placeholder="Novo título Nível 3">
+<input type="text" id="novoConteudo3" placeholder="Novo conteúdo Nível 3">
+<br><br>
+<button onclick="atualizarTudo()">Salvar Alterações</button>
 </div>
 
 <footer>
-© 2026 ROYAL FF - Site Gamer Oficial
+© 2026 ROYAL - Frudiger Aero
 </footer>
+
+<script>
+const senhaAdmin = "171";
+
+function unlock(level){
+    document.getElementById("content"+level).style.display="block";
+}
+
+function login(){
+    const senha = document.getElementById("senha").value;
+    if(senha === senhaAdmin){
+        alert("Modo Deus ativado 👑");
+        document.getElementById("adminPanel").style.display="block";
+    } else {
+        alert("Senha incorreta");
+    }
+}
+
+function atualizarTudo(){
+    for(let i=1;i<=3;i++){
+        const price = document.getElementById("novoPreco"+i).value;
+        const titulo = document.getElementById("novoTitulo"+i).value;
+        const conteudo = document.getElementById("novoConteudo"+i).value;
+
+        if(price){ 
+            document.getElementById("price"+i).innerText = price+"$"; 
+            localStorage.setItem("price"+i, price);
+        }
+        if(titulo){
+            document.getElementById("titulo"+i).innerText = titulo;
+            localStorage.setItem("titulo"+i, titulo);
+        }
+        if(conteudo){
+            document.getElementById("content"+i).innerText = conteudo;
+            localStorage.setItem("conteudo"+i, conteudo);
+        }
+    }
+    alert("Alterações salvas!");
+}
+
+// Carregar dados salvos
+for(let i=1;i<=3;i++){
+    if(localStorage.getItem("price"+i)) document.getElementById("price"+i).innerText = localStorage.getItem("price"+i)+"$";
+    if(localStorage.getItem("titulo"+i)) document.getElementById("titulo"+i).innerText = localStorage.getItem("titulo"+i);
+    if(localStorage.getItem("conteudo"+i)) document.getElementById("content"+i).innerText = localStorage.getItem("conteudo"+i);
+}
+</script>
 
 </body>
 </html>
