@@ -4,47 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Surf Sites</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<!-- Fundo com onda animada -->
-<div class="waves"></div>
-
-<header>
-  <h1>🏄🏽‍♂️ Surf Sites</h1>
-</header>
-
-<main>
-  <div class="cards">
-    <div class="card" id="card1">
-      <h2>Site Básico</h2>
-      <p>Para diversão</p>
-      <p class="price" id="price1">$10</p>
-    </div>
-    <div class="card" id="card2">
-      <h2>Site Médio</h2>
-      <p>Para vendas</p>
-      <p class="price" id="price2">$50</p>
-    </div>
-    <div class="card" id="card3">
-      <h2>Site Avançado</h2>
-      <p>Para logísticas de empresas e fins</p>
-      <p class="price" id="price3">$200</p>
-    </div>
-  </div>
-</main>
-
-<footer>
-  <p>@surf.site</p>
-</footer>
-
-<!-- Bolhas animadas -->
-<div class="bubbles"></div>
-
-<script src="script.js"></script>
-</body>
-</html>/* Reset básico */
+<style>
+/* Reset básico */
 body, html {
   margin: 0;
   padding: 0;
@@ -53,6 +14,7 @@ body, html {
   background: black;
   color: #fff;
   overflow-x: hidden;
+  position: relative;
 }
 
 /* Header */
@@ -61,6 +23,10 @@ header {
   padding: 40px 10px 20px 10px;
   z-index: 2;
   position: relative;
+}
+
+header h1 {
+  font-size: 2em;
 }
 
 /* Cards flutuantes */
@@ -119,7 +85,7 @@ footer {
   left: 0;
   width: 200%;
   height: 200px;
-  background: url('https://i.ibb.co/pKc2n1R/wave.png') repeat-x; /* pode trocar por imagem de onda */
+  background: url('https://i.ibb.co/pKc2n1R/wave.png') repeat-x;
   background-size: cover;
   animation: waveMove 8s linear infinite;
   z-index: 1;
@@ -161,13 +127,53 @@ footer {
   100% { transform: translateY(-600px) scale(0.5); opacity: 0; }
 }
 
-/* Ajustes para tela menor */
+/* Responsivo para celular */
 @media (max-width: 480px) {
   header h1 { font-size: 1.5em; }
   .card { width: 90%; padding: 12px; }
   .card h2 { font-size: 1em; }
   .price { font-size: 1em; }
-}// Modo Deus
+}
+</style>
+</head>
+<body>
+
+<!-- Fundo de ondas -->
+<div class="waves"></div>
+
+<header>
+  <h1>🏄🏽‍♂️ Surf Sites</h1>
+</header>
+
+<main>
+  <div class="cards">
+    <div class="card" id="card1">
+      <h2>Site Básico</h2>
+      <p>Para diversão</p>
+      <p class="price" id="price1">$10</p>
+    </div>
+    <div class="card" id="card2">
+      <h2>Site Médio</h2>
+      <p>Para vendas</p>
+      <p class="price" id="price2">$50</p>
+    </div>
+    <div class="card" id="card3">
+      <h2>Site Avançado</h2>
+      <p>Para logísticas de empresas e fins</p>
+      <p class="price" id="price3">$200</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>@surf.site</p>
+</footer>
+
+<!-- Bolhas animadas -->
+<div class="bubbles"></div>
+
+<script>
+// Modo Deus
 document.addEventListener('keydown', function(e) {
   if(e.ctrlKey && e.key === 'd') {
     let senha = prompt("Digite a senha do Modo Deus:");
@@ -204,7 +210,10 @@ function createBubble() {
   bubble.style.height = bubble.style.width;
   bubble.style.animationDuration = (Math.random() * 3 + 4) + 's';
   bubblesContainer.appendChild(bubble);
-
   setTimeout(() => bubble.remove(), 7000);
 }
 setInterval(createBubble, 400);
+</script>
+
+</body>
+</html>
