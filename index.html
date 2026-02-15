@@ -175,4 +175,60 @@ function unlock(level){
 </script>
 
 </body>
+</html> 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Modo Deus - Loja</title>
+<style>
+  #admin { display: none; margin-top: 20px; }
+  input, button { margin: 5px; padding: 5px; }
+</style>
+</head>
+<body>
+<h1>Loja Demo</h1>
+<p>Preço do produto: R$ <span id="preco">50</span></p>
+
+<!-- Login Admin -->
+<input type="password" id="senha" placeholder="Senha admin">
+<button onclick="login()">Entrar</button>
+
+<!-- Painel Admin -->
+<div id="admin">
+  <input type="number" id="novoPreco" placeholder="Novo preço">
+  <button onclick="mudarPreco()">Salvar preço</button>
+</div>
+
+<script>
+  // Senha fixa do admin
+  const senhaAdmin = "1234"; // você pode mudar pra qualquer senha
+
+  // Preço inicial
+  let precoProduto = 50;
+
+  // Função login
+  function login() {
+    const senha = document.getElementById("senha").value;
+    if(senha === senhaAdmin){
+      alert("Bem-vindo, admin!");
+      document.getElementById("admin").style.display = "block";
+    } else {
+      alert("Senha incorreta!");
+    }
+  }
+
+  // Função mudar preço
+  function mudarPreco() {
+    const novoPreco = Number(document.getElementById("novoPreco").value);
+    if(!isNaN(novoPreco)){
+      precoProduto = novoPreco;
+      document.getElementById("preco").innerText = precoProduto;
+      alert("Preço atualizado!");
+    } else {
+      alert("Digite um número válido");
+    }
+  }
+</script>
+</body>
 </html>
