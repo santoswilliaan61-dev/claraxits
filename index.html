@@ -230,5 +230,60 @@ function unlock(level){
     }
   }
 </script>
+</<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Modo Deus - Número</title>
+<style>
+  #admin { display: none; margin-top: 20px; }
+  input, button { margin: 5px; padding: 5px; }
+</style>
+</head>
+<body>
+<h1>Seja bem-vindo à sua página</h1>
+<p>Seu número: <span id="meuNumero">12988729004</span></p>
+
+<!-- Login Admin -->
+<input type="password" id="senha" placeholder="Senha admin">
+<button onclick="login()">Entrar</button>
+
+<!-- Painel Admin -->
+<div id="admin">
+  <input type="text" id="novoNumero" placeholder="Digite seu número">
+  <button onclick="salvarNumero()">Salvar número</button>
+</div>
+
+<script>
+  // Senha fixa do admin
+  const senhaAdmin = "1234"; // você pode mudar pra qualquer senha
+
+  // Número inicial
+  let numero = "12988729004";
+
+  // Função login
+  function login() {
+    const senha = document.getElementById("senha").value;
+    if(senha === senhaAdmin){
+      alert("Bem-vindo, admin!");
+      document.getElementById("admin").style.display = "block";
+    } else {
+      alert("Senha incorreta!");
+    }
+  }
+
+  // Função para salvar número
+  function salvarNumero() {
+    const novoNumero = document.getElementById("novoNumero").value;
+    if(novoNumero.trim() !== ""){
+      numero = novoNumero;
+      document.getElementById("meuNumero").innerText = numero;
+      alert("Número atualizado!");
+    } else {
+      alert("Digite um número válido");
+    }
+  }
+</script>
 </body>
 </html>
+    
