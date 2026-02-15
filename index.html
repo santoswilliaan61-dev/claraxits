@@ -3,22 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ROYAL 💎 Frudiger Aero</title>
+<title>ROYAL 💎 Aero Espacial Ultra</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
-
 <style>
-/* ===== Corpo ===== */
 body{
     margin:0;
     font-family:'Orbitron', sans-serif;
-    background: linear-gradient(160deg,#e0f7fa,#b2ebf2,#ffffff);
-    color:#102027;
+    background:#000;
+    color:#fff;
     text-align:center;
     overflow-x:hidden;
     position:relative;
 }
 
-/* ===== Canvas de partículas ===== */
 #bgCanvas{
     position:fixed;
     top:0;
@@ -28,19 +25,19 @@ body{
     z-index:-1;
 }
 
-/* ===== ROYAL 3D giratório ===== */
+/* ===== ROYAL 3D Ultra ===== */
 .title-container{
     perspective:1200px;
     margin-top:50px;
 }
 
 .title{
-    font-size:90px;
+    font-size:100px;
     font-weight:900;
-    letter-spacing:6px;
-    color:#00796b;
+    letter-spacing:10px;
+    color:#ff00ff;
     transform-style: preserve-3d;
-    animation:rotate3d 15s linear infinite, glow 3s ease-in-out infinite alternate;
+    animation:rotate3d 12s linear infinite, glow 1.5s ease-in-out infinite alternate;
 }
 
 @keyframes rotate3d{
@@ -49,12 +46,12 @@ body{
 }
 
 @keyframes glow{
-    0%{text-shadow:0 0 10px #004d40,0 0 20px #00796b;}
-    50%{text-shadow:0 0 25px #004d40,0 0 40px #00796b;}
-    100%{text-shadow:0 0 10px #004d40,0 0 20px #00796b;}
+    0%{text-shadow:0 0 15px #00f0ff,0 0 30px #ff00ff,0 0 50px #ff6ec7;}
+    50%{text-shadow:0 0 40px #00f0ff,0 0 70px #ff00ff,0 0 90px #ff6ec7;}
+    100%{text-shadow:0 0 15px #00f0ff,0 0 30px #ff00ff,0 0 50px #ff6ec7;}
 }
 
-/* ===== Seção ===== */
+/* ===== Seção e Cards ===== */
 .section{
     margin-top:50px;
     display:flex;
@@ -63,41 +60,58 @@ body{
     gap:25px;
 }
 
-/* ===== Cards estilo Aero ===== */
 .card{
-    background:#ffffff;
+    background: rgba(20,20,40,0.95);
     padding:25px;
     width:280px;
     border-radius:25px;
-    box-shadow:0 15px 30px rgba(0,0,0,0.1);
-    border:1px solid #b2dfdb;
+    border:1px solid #ff00ff;
+    box-shadow:0 0 25px rgba(255,0,255,0.6);
+    position:relative;
+    overflow:hidden;
     transition:0.5s;
-    transform-style: preserve-3d;
     animation:float 4s ease-in-out infinite;
 }
 
 .card:hover{
-    transform:translateY(-10px) scale(1.05);
-    box-shadow:0 25px 45px rgba(0,0,0,0.2);
+    transform:translateY(-15px) scale(1.08);
+    box-shadow:0 0 60px rgba(255,0,255,0.8);
 }
 
 @keyframes float{
     0%{transform:translateY(0);}
-    50%{transform:translateY(-8px);}
+    50%{transform:translateY(-12px);}
     100%{transform:translateY(0);}
 }
 
+.card::before{
+    content:'';
+    position:absolute;
+    top:-50%;
+    left:-50%;
+    width:200%;
+    height:200%;
+    background:radial-gradient(circle, rgba(255,0,255,0.2) 0%, transparent 60%);
+    animation:rotateCard 6s linear infinite;
+    pointer-events:none;
+}
+
+@keyframes rotateCard{
+    0%{transform:rotate(0deg);}
+    100%{transform:rotate(360deg);}
+}
+
 .price{
-    font-size:24px;
-    color:#00796b;
+    font-size:26px;
+    color:#00f0ff;
     margin:10px 0;
     font-weight:bold;
 }
 
-/* ===== Botões Aero ===== */
+/* Botões neon animado */
 button{
     padding:12px 25px;
-    background:#00796b;
+    background: linear-gradient(270deg,#ff00ff,#00f0ff);
     border:none;
     border-radius:15px;
     font-weight:bold;
@@ -105,61 +119,59 @@ button{
     color:white;
     transition:0.4s;
     margin:5px 0;
-    box-shadow:0 5px 15px rgba(0,121,107,0.3);
+    box-shadow:0 0 20px rgba(255,0,255,0.5);
+    animation:btnGlow 3s linear infinite;
 }
 
-button:hover{
-    transform:scale(1.07);
-    background:#004d40;
-    box-shadow:0 10px 25px rgba(0,121,107,0.5);
+@keyframes btnGlow{
+    0%{box-shadow:0 0 15px #ff00ff,0 0 25px #00f0ff;}
+    50%{box-shadow:0 0 35px #ff00ff,0 0 45px #00f0ff;}
+    100%{box-shadow:0 0 15px #ff00ff,0 0 25px #00f0ff;}
 }
 
-/* ===== Conteúdo escondido ===== */
 .hidden{
     display:none;
     margin-top:15px;
     text-align:left;
     line-height:1.6;
-    color:#004d40;
+    color:#00f0ff;
 }
 
-/* ===== Modo Deus ===== */
+/* Modo Deus */
 #adminPanel{
     display:none;
     margin-top:30px;
     padding:25px;
-    background:#e0f7fa;
-    border:1px solid #b2dfdb;
+    background: rgba(30,30,60,0.95);
+    border:1px solid #ff00ff;
     border-radius:15px;
-    color:#004d40;
+    color:#00f0ff;
 }
 
 input{
     padding:10px 15px;
     border-radius:12px;
-    border:1px solid #b2dfdb;
+    border:1px solid #ff00ff;
     margin:5px;
-    background:#ffffff;
-    color:#004d40;
+    background:#111;
+    color:#00f0ff;
     font-weight:bold;
 }
 
 input::placeholder{
-    color:#00796b;
+    color:#ff00ff;
 }
 
-/* ===== Footer ===== */
 footer{
     margin-top:50px;
     padding:20px;
     font-size:14px;
-    color:#004d40;
+    color:#00f0ff;
 }
 </style>
 </head>
 
 <body>
-
 <canvas id="bgCanvas"></canvas>
 
 <div class="title-container">
@@ -168,7 +180,7 @@ footer{
 
 <div class="section">
 
-<!-- ===== 6 Catálogos ===== -->
+<!-- 6 Catálogos -->
 <div class="card">
     <h2 id="titulo1">Catálogo 1</h2>
     <div class="price" id="price1">25$</div>
@@ -176,7 +188,6 @@ footer{
     <div id="content1" class="hidden">Descrição do Catálogo 1</div>
     <button onclick="alert('Pagamento único 25$')">Pagar</button>
 </div>
-
 <div class="card">
     <h2 id="titulo2">Catálogo 2</h2>
     <div class="price" id="price2">35$</div>
@@ -184,7 +195,6 @@ footer{
     <div id="content2" class="hidden">Descrição do Catálogo 2</div>
     <button onclick="alert('Pagamento único 35$')">Pagar</button>
 </div>
-
 <div class="card">
     <h2 id="titulo3">Catálogo 3</h2>
     <div class="price" id="price3">45$</div>
@@ -192,7 +202,6 @@ footer{
     <div id="content3" class="hidden">Descrição do Catálogo 3</div>
     <button onclick="alert('Pagamento único 45$')">Pagar</button>
 </div>
-
 <div class="card">
     <h2 id="titulo4">Catálogo 4</h2>
     <div class="price" id="price4">55$</div>
@@ -200,7 +209,6 @@ footer{
     <div id="content4" class="hidden">Descrição do Catálogo 4</div>
     <button onclick="alert('Pagamento único 55$')">Pagar</button>
 </div>
-
 <div class="card">
     <h2 id="titulo5">Catálogo 5</h2>
     <div class="price" id="price5">65$</div>
@@ -208,7 +216,6 @@ footer{
     <div id="content5" class="hidden">Descrição do Catálogo 5</div>
     <button onclick="alert('Pagamento único 65$')">Pagar</button>
 </div>
-
 <div class="card">
     <h2 id="titulo6">Catálogo 6</h2>
     <div class="price" id="price6">75$</div>
@@ -219,21 +226,17 @@ footer{
 
 </div>
 
-<!-- Contato -->
 <div style="margin-top:30px;">
 <p>Contato: <b>12988729004</b></p>
 </div>
 
-<!-- Login Admin -->
 <div style="margin-top:30px;">
 <input type="password" id="senha" placeholder="Senha Admin">
 <button onclick="login()">Entrar</button>
 </div>
 
-<!-- Painel Modo Deus -->
 <div id="adminPanel">
 <h3>Modo Deus 👑</h3>
-
 <h4>Preços</h4>
 <input type="number" id="novoPreco1" placeholder="Novo preço Catálogo 1">
 <input type="number" id="novoPreco2" placeholder="Novo preço Catálogo 2">
@@ -241,7 +244,6 @@ footer{
 <input type="number" id="novoPreco4" placeholder="Novo preço Catálogo 4">
 <input type="number" id="novoPreco5" placeholder="Novo preço Catálogo 5">
 <input type="number" id="novoPreco6" placeholder="Novo preço Catálogo 6">
-
 <h4>Textos</h4>
 <input type="text" id="novoTitulo1" placeholder="Novo título Catálogo 1">
 <input type="text" id="novoConteudo1" placeholder="Novo conteúdo Catálogo 1">
@@ -260,39 +262,57 @@ footer{
 </div>
 
 <footer>
-© 2026 ROYAL - Frudiger Aero Exagerado
+© 2026 ROYAL - Aero Espacial Ultra
 </footer>
 
 <script>
-// ===== Partículas Aero =====
+// ===== Fundo espacial ultra =====
 const canvas = document.getElementById('bgCanvas');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-let particles = [];
-for(let i=0;i<80;i++){
-    particles.push({
+let stars = [];
+for(let i=0;i<150;i++){
+    stars.push({
         x: Math.random()*canvas.width,
         y: Math.random()*canvas.height,
         r: Math.random()*2+1,
-        dx: (Math.random()-0.5)*0.3,
-        dy: (Math.random()-0.5)*0.3
+        dx: (Math.random()-0.5)*0.5,
+        dy: (Math.random()-0.5)*0.5
     });
 }
 
 function animate(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    for(let p of particles){
+    ctx.fillStyle='rgba(0,0,0,0.15)';
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    for(let s of stars){
         ctx.beginPath();
-        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-        ctx.fillStyle='rgba(0,121,107,0.4)';
+        ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+        ctx.fillStyle='rgba(255,0,255,0.7)';
         ctx.fill();
-        p.x += p.dx;
-        p.y += p.dy;
-        if(p.x<0 || p.x>canvas.width) p.dx*=-1;
-        if(p.y<0 || p.y>canvas.height) p.dy*=-1;
+        s.x += s.dx;
+        s.y += s.dy;
+        if(s.x<0 || s.x>canvas.width) s.dx*=-1;
+        if(s.y<0 || s.y>canvas.height) s.dy*=-1;
     }
+
+    for(let i=0;i<stars.length;i++){
+        for(let j=i+1;j<stars.length;j++){
+            let dx = stars[i].x - stars[j].x;
+            let dy = stars[i].y - stars[j].y;
+            let dist = Math.sqrt(dx*dx + dy*dy);
+            if(dist<100){
+                ctx.beginPath();
+                ctx.moveTo(stars[i].x,stars[i].y);
+                ctx.lineTo(stars[j].x,stars[j].y);
+                ctx.strokeStyle='rgba(255,0,255,0.2)';
+                ctx.stroke();
+            }
+        }
+    }
+
     requestAnimationFrame(animate);
 }
 animate();
@@ -301,7 +321,7 @@ window.addEventListener('resize',()=>{
     canvas.height = window.innerHeight;
 });
 
-// ===== ROYAL e Cards =====
+// ===== ROYAL + Cards + Modo Deus =====
 const senhaAdmin = "171";
 
 function unlock(level){
@@ -340,13 +360,11 @@ function atualizarTudo(){
     alert("Alterações salvas!");
 }
 
-// Carregar dados salvos
 for(let i=1;i<=6;i++){
     if(localStorage.getItem("price"+i)) document.getElementById("price"+i).innerText = localStorage.getItem("price"+i)+"$";
     if(localStorage.getItem("titulo"+i)) document.getElementById("titulo"+i).innerText = localStorage.getItem("titulo"+i);
     if(localStorage.getItem("conteudo"+i)) document.getElementById("content"+i).innerText = localStorage.getItem("conteudo"+i);
 }
 </script>
-
 </body>
 </html>
