@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ROYAL 💎 HUD 3D Sci-Fi Total</title>
+<title>ROYAL 💎 HUD 3D Futurista</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
 body{
@@ -36,48 +37,56 @@ body{
     z-index:10;
 }
 
-/* ROYAL 3D Ultra */
+/* ROYAL 3D */
 .title-container{
-    perspective:3000px;
+    perspective:2500px;
     margin-top:20px;
 }
 .title{
-    font-size:130px;
+    font-size:100px;
     font-weight:900;
     color:#ff00ff;
     transform-style:preserve-3d;
-    animation:rotate3d 12s linear infinite, glow 1s infinite alternate;
+    animation:rotate3d 12s linear infinite, glow 1.5s infinite alternate;
+    text-align:center;
 }
 @keyframes rotate3d{
     0%{transform:rotateY(0deg) rotateX(0deg);}
     100%{transform:rotateY(360deg) rotateX(10deg);}
 }
 @keyframes glow{
-    0%{text-shadow:0 0 30px #00f0ff,0 0 60px #ff00ff,0 0 100px #ff6ec7;}
-    50%{text-shadow:0 0 80px #00f0ff,0 0 120px #ff00ff,0 0 150px #ff6ec7;}
-    100%{text-shadow:0 0 30px #00f0ff,0 0 60px #ff00ff,0 0 100px #ff6ec7;}
+    0%{text-shadow:0 0 30px #00f0ff,0 0 60px #ff00ff;}
+    50%{text-shadow:0 0 80px #00f0ff,0 0 120px #ff00ff;}
+    100%{text-shadow:0 0 30px #00f0ff,0 0 60px #ff00ff;}
 }
 
-/* Section e Cards flutuantes 3D */
+/* Section e Cards centralizados */
 .section{
     margin-top:40px;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:40px;
     position:relative;
-    width:100%;
-    height:100vh;
 }
 .card{
     background: rgba(20,20,40,0.95);
     width:260px;
     padding:25px;
-    border-radius:40px;
+    border-radius:30px;
     border:3px solid #ff00ff;
-    box-shadow:0 0 60px #ff00ff,0 0 100px #00f0ff;
-    position:absolute; 
+    box-shadow:0 0 50px #ff00ff,0 0 100px #00f0ff;
     transform-style:preserve-3d;
     transition:0.5s;
+    text-align:center;
+    animation:float 3s ease-in-out infinite alternate;
+}
+@keyframes float{
+    0%{transform:translateY(0px);}
+    100%{transform:translateY(-15px);}
 }
 .card:hover{
-    transform:translateY(-25px) rotateY(15deg) rotateX(10deg);
+    transform:translateY(-25px) scale(1.05);
     box-shadow:0 0 120px #ff00ff,0 0 180px #00f0ff;
 }
 .hidden{
@@ -159,7 +168,7 @@ footer{
     <div class="title"><b>ROYAL💎</b></div>
 </div>
 
-<div class="section" id="section">
+<div class="section">
 <!-- 6 Catálogos -->
 <div class="card" id="card1">
 <h2 id="titulo1">Catálogo 1</h2>
@@ -210,11 +219,11 @@ footer{
 </div>
 </div>
 
-<div style="margin-top:30px;">
+<div style="margin-top:30px; text-align:center;">
 <p>Contato: <b>12988729004</b></p>
 </div>
 
-<div style="margin-top:30px;">
+<div style="margin-top:30px; text-align:center;">
 <input type="password" id="senha" placeholder="Senha Admin">
 <button onclick="login()">Entrar</button>
 </div>
@@ -229,7 +238,7 @@ footer{
 </div>
 
 <footer>
-© 2026 ROYAL - HUD 3D Sci-Fi Total
+© 2026 ROYAL - HUD 3D Futurista
 </footer>
 
 <script>
@@ -246,10 +255,6 @@ for(let i=0;i<300;i++){stars.push({x:Math.random()*canvas.width,y:Math.random()*
 let mouse={x:canvas.width/2,y:canvas.height/2};
 document.addEventListener('mousemove',e=>{mouse.x=e.clientX; mouse.y=e.clientY;});
 
-const cards=document.querySelectorAll('.card');
-const cardData=[];
-cards.forEach(c=>{cardData.push({el:c,x:Math.random()*window.innerWidth,y:Math.random()*window.innerHeight,z:Math.random()*360,rx:Math.random()*360,ry:Math.random()*360,rz:Math.random()*360,speed:Math.random()*0.02+0.01});});
-
 function animate(){
     ctx.fillStyle='rgba(0,0,0,0.1)'; ctx.fillRect(0,0,canvas.width,canvas.height);
     for(let s of stars){
@@ -258,15 +263,6 @@ function animate(){
         const dx=mouse.x-s.x,dy=mouse.y-s.y,dist=Math.sqrt(dx*dx+dy*dy);
         if(dist<150){ctx.beginPath();ctx.moveTo(s.x,s.y);ctx.lineTo(mouse.x,mouse.y);ctx.strokeStyle=`rgba(0,255,255,${1-dist/150})`;ctx.lineWidth=1;ctx.stroke();}
     }
-    // Cards 3D random rotation
-    cardData.forEach(d=>{
-        d.rx+=d.speed*2;
-        d.ry+=d.speed*3;
-        d.rz+=d.speed*1.5;
-        d.x+=Math.sin(Date.now()*0.001+d.speed*10)*0.5;
-        d.y+=Math.cos(Date.now()*0.001+d.speed*10)*0.5;
-        d.el.style.transform=`translate3d(${d.x}px,${d.y}px,0) rotateX(${d.rx}deg) rotateY(${d.ry}deg) rotateZ(${d.rz}deg)`;
-    });
     requestAnimationFrame(animate);
 }
 animate();
