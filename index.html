@@ -7,7 +7,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 
 <style>
-/* ===== BODY ===== */
 body{
     margin:0;
     background: radial-gradient(circle at center, #0f0c29, #302b63, #240046);
@@ -17,7 +16,6 @@ body{
     overflow-x:hidden;
 }
 
-/* ===== TÍTULO 3D NEON ===== */
 .title-container{
     perspective:1200px;
     margin-top:60px;
@@ -45,7 +43,6 @@ body{
     100%{text-shadow:0 0 10px #ff00ff,0 0 20px #00ffff,0 0 30px #ff0055;}
 }
 
-/* ===== CARDS ===== */
 .section{
     margin-top:50px;
 }
@@ -83,6 +80,7 @@ button{
     cursor:pointer;
     color:white;
     transition:0.3s;
+    margin:5px 0;
 }
 
 button:hover{
@@ -90,7 +88,6 @@ button:hover{
     background:linear-gradient(90deg,#00ffff,#ff00ff);
 }
 
-/* ===== CONTEÚDO ESCONDIDO ===== */
 .hidden{
     display:none;
     margin-top:20px;
@@ -99,7 +96,6 @@ button:hover{
     color:#00ffea;
 }
 
-/* ===== PAINEL ADMIN ===== */
 #adminPanel{
     display:none;
     margin-top:40px;
@@ -122,6 +118,7 @@ input{
 input::placeholder{
     color:#00ffea;
 }
+
 footer{
     margin-top:60px;
     padding:20px;
@@ -141,27 +138,24 @@ footer{
     <h2 id="titulo1">Nível 1</h2>
     <div class="price" id="price1">25$</div>
     <button onclick="unlock(1)">Desbloquear</button>
-    <div id="content1" class="hidden">
-        Guia Básico de Emagrecimento
-    </div>
+    <div id="content1" class="hidden">Guia Básico de Emagrecimento</div>
+    <button onclick="window.open('LINK_PAGAMENTO1','_blank')">Comprar Agora</button>
 </div>
 
 <div class="card">
     <h2 id="titulo2">Nível 2</h2>
     <div class="price" id="price2">45$</div>
     <button onclick="unlock(2)">Desbloquear</button>
-    <div id="content2" class="hidden">
-        Plano Intermediário
-    </div>
+    <div id="content2" class="hidden">Plano Intermediário</div>
+    <button onclick="window.open('LINK_PAGAMENTO2','_blank')">Comprar Agora</button>
 </div>
 
 <div class="card">
     <h2 id="titulo3">Nível 3</h2>
     <div class="price" id="price3">65$</div>
     <button onclick="unlock(3)">Desbloquear</button>
-    <div id="content3" class="hidden">
-        Plano Avançado
-    </div>
+    <div id="content3" class="hidden">Plano Avançado</div>
+    <button onclick="window.open('LINK_PAGAMENTO3','_blank')">Comprar Agora</button>
 </div>
 </div>
 
@@ -205,6 +199,16 @@ footer{
 <script>
 const senhaAdmin = "171";
 
+// Carregar dados do localStorage
+function carregarDados(){
+    for(let i=1;i<=3;i++){
+        if(localStorage.getItem("price"+i)) document.getElementById("price"+i).innerText = localStorage.getItem("price"+i) + "$";
+        if(localStorage.getItem("titulo"+i)) document.getElementById("titulo"+i).innerText = localStorage.getItem("titulo"+i);
+        if(localStorage.getItem("conteudo"+i)) document.getElementById("content"+i).innerText = localStorage.getItem("conteudo"+i);
+    }
+}
+carregarDados();
+
 function unlock(level){
     document.getElementById("content"+level).style.display="block";
 }
@@ -220,29 +224,24 @@ function login(){
 }
 
 function atualizarTudo(){
-    // Preços
-    const p1 = document.getElementById("novoPreco1").value;
-    const p2 = document.getElementById("novoPreco2").value;
-    const p3 = document.getElementById("novoPreco3").value;
-    if(p1) document.getElementById("price1").innerText = p1 + "$";
-    if(p2) document.getElementById("price2").innerText = p2 + "$";
-    if(p3) document.getElementById("price3").innerText = p3 + "$";
+    for(let i=1;i<=3;i++){
+        const price = document.getElementById("novoPreco"+i).value;
+        const titulo = document.getElementById("novoTitulo"+i).value;
+        const conteudo = document.getElementById("novoConteudo"+i).value;
 
-    // Títulos e conteúdos
-    const t1 = document.getElementById("novoTitulo1").value;
-    const c1 = document.getElementById("novoConteudo1").value;
-    const t2 = document.getElementById("novoTitulo2").value;
-    const c2 = document.getElementById("novoConteudo2").value;
-    const t3 = document.getElementById("novoTitulo3").value;
-    const c3 = document.getElementById("novoConteudo3").value;
-
-    if(t1) document.getElementById("titulo1").innerText = t1;
-    if(c1) document.getElementById("content1").innerText = c1;
-    if(t2) document.getElementById("titulo2").innerText = t2;
-    if(c2) document.getElementById("content2").innerText = c2;
-    if(t3) document.getElementById("titulo3").innerText = t3;
-    if(c3) document.getElementById("content3").innerText = c3;
-
+        if(price){ 
+            document.getElementById("price"+i).innerText = price+"$"; 
+            localStorage.setItem("price"+i, price);
+        }
+        if(titulo){
+            document.getElementById("titulo"+i).innerText = titulo;
+            localStorage.setItem("titulo"+i, titulo);
+        }
+        if(conteudo){
+            document.getElementById("content"+i).innerText = conteudo;
+            localStorage.setItem("conteudo"+i, conteudo);
+        }
+    }
     alert("Alterações salvas!");
 }
 </script>
