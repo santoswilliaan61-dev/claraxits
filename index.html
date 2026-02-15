@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ROYAL 💎 HUD 3D Extremo</title>
+<title>ROYAL 💎 HUD 3D Extremo Espacial</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
 body{
@@ -11,7 +11,7 @@ body{
     font-family:'Orbitron', sans-serif;
     background:#000;
     color:#fff;
-    overflow-y:auto; /* Habilita scroll */
+    overflow-y:auto;
     overflow-x:hidden;
     min-height:100vh;
 }
@@ -21,7 +21,7 @@ body{
     left:0;
     width:100%;
     height:100%;
-    z-index:-3;
+    z-index:-5;
 }
 
 /* Cursor HUD */
@@ -38,11 +38,11 @@ body{
 
 /* ROYAL 3D Ultra */
 .title-container{
-    perspective:2000px;
+    perspective:2500px;
     margin-top:20px;
 }
 .title{
-    font-size:120px;
+    font-size:130px;
     font-weight:900;
     color:#ff00ff;
     transform-style:preserve-3d;
@@ -58,13 +58,13 @@ body{
     100%{text-shadow:0 0 30px #00f0ff,0 0 60px #ff00ff,0 0 100px #ff6ec7;}
 }
 
-/* Seção e Cards 3D Flutuantes */
+/* Section e Cards flutuantes */
 .section{
     margin-top:40px;
     display:flex;
     flex-wrap:wrap;
     justify-content:center;
-    gap:30px;
+    gap:40px;
     position:relative;
     z-index:1;
 }
@@ -72,16 +72,16 @@ body{
     background: rgba(20,20,40,0.9);
     width:260px;
     padding:25px;
-    border-radius:35px;
-    border:2px solid #ff00ff;
-    box-shadow:0 0 50px #ff00ff,0 0 80px #00f0ff;
-    position:relative;
+    border-radius:40px;
+    border:3px solid #ff00ff;
+    box-shadow:0 0 60px #ff00ff,0 0 100px #00f0ff;
+    position:absolute; /* flutuando livre */
     transform-style:preserve-3d;
     transition:0.5s;
 }
 .card:hover{
-    transform:translateY(-20px) rotateY(10deg) rotateX(5deg);
-    box-shadow:0 0 100px #ff00ff,0 0 150px #00f0ff;
+    transform:translateY(-25px) rotateY(15deg) rotateX(10deg);
+    box-shadow:0 0 120px #ff00ff,0 0 180px #00f0ff;
 }
 .hidden{
     display:none;
@@ -95,7 +95,7 @@ body{
 button{
     padding:12px 25px;
     border:none;
-    border-radius:20px;
+    border-radius:25px;
     font-weight:bold;
     cursor:pointer;
     color:white;
@@ -103,19 +103,19 @@ button{
     position:relative;
     overflow:hidden;
     background: linear-gradient(270deg,#ff00ff,#00f0ff);
-    box-shadow:0 0 35px rgba(255,0,255,0.7);
+    box-shadow:0 0 40px rgba(255,0,255,0.8);
     transition:0.2s;
 }
 button:hover{
-    transform:scale(1.1);
-    box-shadow:0 0 80px rgba(255,0,255,1);
+    transform:scale(1.15);
+    box-shadow:0 0 100px rgba(255,0,255,1);
 }
 .button-effect{
     position:absolute;
     width:0px;
     height:0px;
     border-radius:50%;
-    background:rgba(0,255,255,0.4);
+    background:rgba(0,255,255,0.5);
     pointer-events:none;
     animation:explode 0.6s ease-out forwards;
 }
@@ -130,13 +130,13 @@ button:hover{
     margin-top:30px;
     padding:25px;
     background: rgba(30,30,60,0.95);
-    border:2px solid #ff00ff;
-    border-radius:20px;
+    border:3px solid #ff00ff;
+    border-radius:25px;
     color:#00f0ff;
 }
 input{
-    padding:10px 15px;
-    border-radius:15px;
+    padding:12px 18px;
+    border-radius:20px;
     border:1px solid #ff00ff;
     margin:5px;
     background:#111;
@@ -162,7 +162,7 @@ footer{
     <div class="title"><b>ROYAL💎</b></div>
 </div>
 
-<div class="section">
+<div class="section" id="section">
 <!-- 6 Catálogos -->
 <div class="card" id="card1">
 <h2 id="titulo1">Catálogo 1</h2>
@@ -232,7 +232,7 @@ footer{
 </div>
 
 <footer>
-© 2026 ROYAL - HUD 3D Extremo
+© 2026 ROYAL - HUD 3D Extremo Espacial
 </footer>
 
 <script>
@@ -244,9 +244,11 @@ document.addEventListener('mousemove',e=>{cursor.style.left=e.clientX+'px'; curs
 const canvas=document.getElementById('bgCanvas');
 const ctx=canvas.getContext('2d');
 canvas.width=window.innerWidth; canvas.height=window.innerHeight;
-let stars=[]; for(let i=0;i<300;i++){stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2+1});}
+let stars=[];
+for(let i=0;i<300;i++){stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2+1});}
 let mouse={x:canvas.width/2,y:canvas.height/2};
 document.addEventListener('mousemove',e=>{mouse.x=e.clientX; mouse.y=e.clientY;});
+
 function animate(){
     ctx.fillStyle='rgba(0,0,0,0.1)'; ctx.fillRect(0,0,canvas.width,canvas.height);
     for(let s of stars){
@@ -256,15 +258,9 @@ function animate(){
         if(dist<150){ctx.beginPath();ctx.moveTo(s.x,s.y);ctx.lineTo(mouse.x,mouse.y);ctx.strokeStyle=`rgba(0,255,255,${1-dist/150})`;ctx.lineWidth=1;ctx.stroke();}
     }
     const cards=document.querySelectorAll('.card');
-    for(let i=0;i<cards.length;i++){
-        const r1=cards[i].getBoundingClientRect();
-        const x1=r1.left+r1.width/2,y1=r1.top+r1.height/2;
-        for(let j=i+1;j<cards.length;j++){
-            const r2=cards[j].getBoundingClientRect();
-            const x2=r2.left+r2.width/2,y2=r2.top+r2.height/2;
-            const dist=Math.sqrt((x2-x1)**2+(y2-y1)**2);
-            if(dist<500){ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.strokeStyle=`rgba(255,0,255,${0.5-dist/1000})`;ctx.lineWidth=1.5;ctx.stroke();}
-        }
+    for(let card of cards){
+        card.style.left=(Math.sin(Date.now()/2000 + Math.random()*5)*50 + window.innerWidth/2 - 130) + 'px';
+        card.style.top=(Math.cos(Date.now()/2500 + Math.random()*5)*50 + window.innerHeight/2 - 150) + 'px';
     }
     requestAnimationFrame(animate);
 }
