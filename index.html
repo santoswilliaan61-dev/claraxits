@@ -11,8 +11,9 @@ body{
     font-family:'Orbitron', sans-serif;
     background:#000;
     color:#fff;
-    overflow:hidden;
-    cursor:none;
+    overflow-y:auto; /* Habilita scroll */
+    overflow-x:hidden;
+    min-height:100vh;
 }
 #bgCanvas{
     position:fixed;
@@ -236,12 +237,12 @@ footer{
 
 <script>
 // Cursor
-const cursor = document.getElementById('cursor');
+const cursor=document.getElementById('cursor');
 document.addEventListener('mousemove',e=>{cursor.style.left=e.clientX+'px'; cursor.style.top=e.clientY+'px';});
 
-// Fundo partículas reativo ao mouse
-const canvas = document.getElementById('bgCanvas');
-const ctx = canvas.getContext('2d');
+// Fundo partículas e linhas
+const canvas=document.getElementById('bgCanvas');
+const ctx=canvas.getContext('2d');
 canvas.width=window.innerWidth; canvas.height=window.innerHeight;
 let stars=[]; for(let i=0;i<300;i++){stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2+1});}
 let mouse={x:canvas.width/2,y:canvas.height/2};
@@ -254,7 +255,6 @@ function animate(){
         const dx=mouse.x-s.x,dy=mouse.y-s.y,dist=Math.sqrt(dx*dx+dy*dy);
         if(dist<150){ctx.beginPath();ctx.moveTo(s.x,s.y);ctx.lineTo(mouse.x,mouse.y);ctx.strokeStyle=`rgba(0,255,255,${1-dist/150})`;ctx.lineWidth=1;ctx.stroke();}
     }
-    // linhas conectando cards
     const cards=document.querySelectorAll('.card');
     for(let i=0;i<cards.length;i++){
         const r1=cards[i].getBoundingClientRect();
