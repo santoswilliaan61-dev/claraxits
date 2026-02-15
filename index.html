@@ -6,28 +6,31 @@
 <title>ROYAL</title>
 
 <style>
+/* ===== BODY ===== */
 body{
     margin:0;
-    background: radial-gradient(circle at center, #001233, #000814 70%);
-    font-family: 'Segoe UI', sans-serif;
-    color:white;
+    background: radial-gradient(circle at center, #0f0c29, #302b63, #24243e);
+    font-family: 'Orbitron', sans-serif;
+    color:#00fff7;
     text-align:center;
     overflow-x:hidden;
 }
 
-/* ===== TÍTULO 3D ===== */
+/* ===== TÍTULO 3D CYBERPUNK ===== */
 .title-container{
     perspective:1200px;
-    margin-top:80px;
+    margin-top:60px;
 }
 
 .title{
-    font-size:60px;
+    font-size:70px;
     font-weight:900;
-    letter-spacing:4px;
-    color:#00bfff;
-    transform-style:preserve-3d;
-    animation: rotate3d 8s infinite linear, glow 2s infinite alternate;
+    letter-spacing:5px;
+    background: linear-gradient(45deg,#ff00ff,#00ffff,#ff0055,#00ffea);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transform-style: preserve-3d;
+    animation: rotate3d 10s linear infinite, glow 2s ease-in-out infinite alternate;
 }
 
 @keyframes rotate3d{
@@ -36,45 +39,45 @@ body{
 }
 
 @keyframes glow{
-    from{text-shadow:0 0 15px #00bfff, 0 0 30px #0099ff;}
-    to{text-shadow:0 0 30px #00bfff, 0 0 60px #00ffff;}
+    0%{text-shadow:0 0 10px #ff00ff,0 0 20px #00ffff,0 0 30px #ff0055;}
+    50%{text-shadow:0 0 20px #ff00ff,0 0 40px #00ffff,0 0 60px #ff0055;}
+    100%{text-shadow:0 0 10px #ff00ff,0 0 20px #00ffff,0 0 30px #ff0055;}
 }
 
-/* ===== SEÇÃO ===== */
+/* ===== CARDS ===== */
 .section{
-    margin-top:60px;
+    margin-top:50px;
 }
 
-/* ===== CARDS 3D ===== */
 .card{
-    background: linear-gradient(145deg,#001d3d,#000814);
+    background: linear-gradient(145deg,#1a1a2e,#0f0c29);
     margin:25px auto;
     padding:30px;
     width:90%;
     max-width:420px;
-    border-radius:18px;
-    box-shadow:0 15px 30px rgba(0,191,255,0.2);
+    border-radius:20px;
+    box-shadow:0 10px 20px rgba(0,255,255,0.3);
     transition:0.4s;
-    transform:translateY(0);
+    border:2px solid #00fff7;
 }
 
 .card:hover{
-    transform:translateY(-10px) scale(1.03);
-    box-shadow:0 25px 50px rgba(0,191,255,0.6);
+    transform: translateY(-10px) scale(1.05);
+    box-shadow:0 25px 50px rgba(0,255,255,0.8);
 }
 
 .price{
-    font-size:24px;
-    color:#00bfff;
+    font-size:26px;
+    color:#ff00ff;
     margin:15px 0;
     font-weight:bold;
 }
 
 button{
     padding:12px 25px;
-    background:linear-gradient(90deg,#00bfff,#0077ff);
+    background:linear-gradient(90deg,#ff00ff,#00ffff);
     border:none;
-    border-radius:10px;
+    border-radius:12px;
     font-weight:bold;
     cursor:pointer;
     color:white;
@@ -82,8 +85,8 @@ button{
 }
 
 button:hover{
-    background:linear-gradient(90deg,#0077ff,#00bfff);
-    transform:scale(1.05);
+    transform: scale(1.1);
+    background:linear-gradient(90deg,#00ffff,#ff00ff);
 }
 
 /* ===== CONTEÚDO ESCONDIDO ===== */
@@ -92,23 +95,35 @@ button:hover{
     margin-top:20px;
     text-align:left;
     line-height:1.6;
-    animation: fadeIn 0.6s ease forwards;
+    color:#00ffea;
 }
 
-@keyframes fadeIn{
-    from{opacity:0; transform:translateY(10px);}
-    to{opacity:1; transform:translateY(0);}
-}
-
-footer{
-    margin-top:60px;
+/* ===== PAINEL ADMIN ===== */
+#adminPanel{
+    display:none;
+    margin-top:40px;
     padding:20px;
-    opacity:0.6;
-    font-size:14px;
+    background:#1a1a2e;
+    border:2px solid #ff00ff;
+    border-radius:15px;
+}
+
+/* INPUTS ===== */
+input{
+    padding:8px 12px;
+    border-radius:10px;
+    border:none;
+    margin:5px;
+    background:#0f0c29;
+    color:#00fff7;
+    font-weight:bold;
+}
+input::placeholder{
+    color:#00ffea;
 }
 </style>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
 <div class="title-container">
@@ -116,174 +131,83 @@ footer{
 </div>
 
 <div class="section">
-
 <div class="card">
     <h2>Nível 1</h2>
-    <div class="price">25$</div>
+    <div class="price" id="price1">25$</div>
     <button onclick="unlock(1)">Desbloquear</button>
     <div id="content1" class="hidden">
-        <b>Guia Básico de Emagrecimento</b><br><br>
-        • Beber 2 a 3L de água por dia<br>
-        • Cortar refrigerante e açúcar refinado<br>
-        • Reduzir frituras<br>
-        • Caminhar 30 minutos diariamente<br>
-        • Comer mais proteínas e vegetais<br>
-        • Evitar refeições tarde da noite<br>
+        Guia Básico de Emagrecimento
     </div>
 </div>
 
 <div class="card">
     <h2>Nível 2</h2>
-    <div class="price">45$</div>
+    <div class="price" id="price2">45$</div>
     <button onclick="unlock(2)">Desbloquear</button>
     <div id="content2" class="hidden">
-        <b>Plano Intermediário</b><br><br>
-        • Déficit calórico controlado<br>
-        • Treino HIIT 3x por semana<br>
-        • Musculação leve<br>
-        • Dormir 7-8 horas<br>
-        • Organização alimentar semanal<br>
-        • Redução de carboidratos simples<br>
+        Plano Intermediário
     </div>
 </div>
 
 <div class="card">
     <h2>Nível 3</h2>
-    <div class="price">65$</div>
+    <div class="price" id="price3">65$</div>
     <button onclick="unlock(3)">Desbloquear</button>
     <div id="content3" class="hidden">
-        <b>Plano Avançado</b><br><br>
-        • Planejamento alimentar completo<br>
-        • Cálculo personalizado de calorias<br>
-        • Treino força + cardio combinado<br>
-        • Estratégia opcional de jejum intermitente<br>
-        • Monitoramento semanal de progresso<br>
-        • Estratégias para manter resultado a longo prazo<br>
+        Plano Avançado
     </div>
 </div>
-
 </div>
 
-<footer>
+<!-- LOGIN ADMIN -->
+<div style="margin-top:40px;">
+    <input type="password" id="senha" placeholder="Senha Admin">
+    <button onclick="login()">Entrar</button>
+</div>
+
+<!-- PAINEL MODO DEUS -->
+<div id="adminPanel">
+    <h3>Modo Deus 👑</h3>
+    <input type="number" id="novoPreco1" placeholder="Novo preço Nível 1">
+    <input type="number" id="novoPreco2" placeholder="Novo preço Nível 2">
+    <input type="number" id="novoPreco3" placeholder="Novo preço Nível 3">
+    <br><br>
+    <button onclick="atualizarPrecos()">Salvar Preços</button>
+</div>
+
+<footer style="color:#ff00ff">
 © 2026 ROYAL - Todos os direitos reservados
 </footer>
 
 <script>
+const senhaAdmin = "171";
+
 function unlock(level){
     document.getElementById("content"+level).style.display="block";
+}
+
+function login(){
+    const senha = document.getElementById("senha").value;
+    if(senha === senhaAdmin){
+        alert("Modo Deus ativado 👑");
+        document.getElementById("adminPanel").style.display="block";
+    } else {
+        alert("Senha incorreta");
+    }
+}
+
+function atualizarPrecos(){
+    const p1 = document.getElementById("novoPreco1").value;
+    const p2 = document.getElementById("novoPreco2").value;
+    const p3 = document.getElementById("novoPreco3").value;
+
+    if(p1) document.getElementById("price1").innerText = p1 + "$";
+    if(p2) document.getElementById("price2").innerText = p2 + "$";
+    if(p3) document.getElementById("price3").innerText = p3 + "$";
+
+    alert("Preços atualizados!");
 }
 </script>
 
 </body>
-</html> 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<title>Modo Deus - Loja</title>
-<style>
-  #admin { display: none; margin-top: 20px; }
-  input, button { margin: 5px; padding: 5px; }
-</style>
-</head>
-<body>
-<h1>Loja Demo</h1>
-<p>Preço do produto: R$ <span id="preco">50</span></p>
-
-<!-- Login Admin -->
-<input type="password" id="senha" placeholder="Senha admin">
-<button onclick="login()">Entrar</button>
-
-<!-- Painel Admin -->
-<div id="admin">
-  <input type="number" id="novoPreco" placeholder="Novo preço">
-  <button onclick="mudarPreco()">Salvar preço</button>
-</div>
-
-<script>
-  // Senha fixa do admin
-  const senhaAdmin = "1234"; // você pode mudar pra qualquer senha
-
-  // Preço inicial
-  let precoProduto = 50;
-
-  // Função login
-  function login() {
-    const senha = document.getElementById("senha").value;
-    if(senha === senhaAdmin){
-      alert("Bem-vindo, admin!");
-      document.getElementById("admin").style.display = "block";
-    } else {
-      alert("Senha incorreta!");
-    }
-  }
-
-  // Função mudar preço
-  function mudarPreco() {
-    const novoPreco = Number(document.getElementById("novoPreco").value);
-    if(!isNaN(novoPreco)){
-      precoProduto = novoPreco;
-      document.getElementById("preco").innerText = precoProduto;
-      alert("Preço atualizado!");
-    } else {
-      alert("Digite um número válido");
-    }
-  }
-</script>
-</<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<title>Modo Deus - Número</title>
-<style>
-  #admin { display: none; margin-top: 20px; }
-  input, button { margin: 5px; padding: 5px; }
-</style>
-</head>
-<body>
-<h1>Seja bem-vindo à sua página</h1>
-<p>Seu número: <span id="meuNumero">12988729004</span></p>
-
-<!-- Login Admin -->
-<input type="password" id="senha" placeholder="Senha admin">
-<button onclick="login()">Entrar</button>
-
-<!-- Painel Admin -->
-<div id="admin">
-  <input type="text" id="novoNumero" placeholder="Digite seu número">
-  <button onclick="salvarNumero()">Salvar número</button>
-</div>
-
-<script>
-  // Senha fixa do admin
-  const senhaAdmin = "1234"; // você pode mudar pra qualquer senha
-
-  // Número inicial
-  let numero = "12988729004";
-
-  // Função login
-  function login() {
-    const senha = document.getElementById("senha").value;
-    if(senha === senhaAdmin){
-      alert("Bem-vindo, admin!");
-      document.getElementById("admin").style.display = "block";
-    } else {
-      alert("Senha incorreta!");
-    }
-  }
-
-  // Função para salvar número
-  function salvarNumero() {
-    const novoNumero = document.getElementById("novoNumero").value;
-    if(novoNumero.trim() !== ""){
-      numero = novoNumero;
-      document.getElementById("meuNumero").innerText = numero;
-      alert("Número atualizado!");
-    } else {
-      alert("Digite um número válido");
-    }
-  }
-</script>
-</body>
 </html>
-    
