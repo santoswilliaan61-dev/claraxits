@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ROYAL 💎 Aero Espacial Ultra</title>
+<title>ROYAL 💎 Aero Espacial Extremo</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
 body{
@@ -22,7 +22,7 @@ body{
     left:0;
     width:100%;
     height:100%;
-    z-index:-1;
+    z-index:-2;
 }
 
 /* ===== ROYAL 3D Ultra ===== */
@@ -58,6 +58,7 @@ body{
     flex-wrap:wrap;
     justify-content:center;
     gap:25px;
+    position:relative;
 }
 
 .card{
@@ -84,28 +85,13 @@ body{
     100%{transform:translateY(0);}
 }
 
-.card::before{
-    content:'';
+/* Partículas orbitando cards */
+.orbit{
     position:absolute;
-    top:-50%;
-    left:-50%;
-    width:200%;
-    height:200%;
-    background:radial-gradient(circle, rgba(255,0,255,0.2) 0%, transparent 60%);
-    animation:rotateCard 6s linear infinite;
+    width:100%;
+    height:100%;
+    top:0; left:0;
     pointer-events:none;
-}
-
-@keyframes rotateCard{
-    0%{transform:rotate(0deg);}
-    100%{transform:rotate(360deg);}
-}
-
-.price{
-    font-size:26px;
-    color:#00f0ff;
-    margin:10px 0;
-    font-weight:bold;
 }
 
 /* Botões neon animado */
@@ -117,18 +103,34 @@ button{
     font-weight:bold;
     cursor:pointer;
     color:white;
-    transition:0.4s;
+    transition:0.2s;
     margin:5px 0;
     box-shadow:0 0 20px rgba(255,0,255,0.5);
-    animation:btnGlow 3s linear infinite;
+    position:relative;
+    overflow:hidden;
 }
 
-@keyframes btnGlow{
-    0%{box-shadow:0 0 15px #ff00ff,0 0 25px #00f0ff;}
-    50%{box-shadow:0 0 35px #ff00ff,0 0 45px #00f0ff;}
-    100%{box-shadow:0 0 15px #ff00ff,0 0 25px #00f0ff;}
+button:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 40px rgba(255,0,255,0.8);
 }
 
+.button-effect{
+    position:absolute;
+    width:0px;
+    height:0px;
+    border-radius:50%;
+    background:rgba(0,255,255,0.4);
+    pointer-events:none;
+    animation:explode 0.6s ease-out forwards;
+}
+
+@keyframes explode{
+    0%{width:0; height:0; opacity:1;}
+    100%{width:200px; height:200px; opacity:0;}
+}
+
+/* Conteúdo escondido */
 .hidden{
     display:none;
     margin-top:15px;
@@ -170,7 +172,6 @@ footer{
 }
 </style>
 </head>
-
 <body>
 <canvas id="bgCanvas"></canvas>
 
@@ -180,48 +181,59 @@ footer{
 
 <div class="section">
 
-<!-- 6 Catálogos -->
-<div class="card">
+<!-- 6 Catálogos com partículas orbitando -->
+<div class="card" id="card1">
+    <div class="orbit" id="orbit1"></div>
     <h2 id="titulo1">Catálogo 1</h2>
     <div class="price" id="price1">25$</div>
-    <button onclick="unlock(1)">Desbloquear</button>
+    <button onclick="unlock(1);buttonClickEffect(event)">Desbloquear</button>
     <div id="content1" class="hidden">Descrição do Catálogo 1</div>
-    <button onclick="alert('Pagamento único 25$')">Pagar</button>
+    <button onclick="alert('Pagamento único 25$');buttonClickEffect(event)">Pagar</button>
 </div>
-<div class="card">
+
+<div class="card" id="card2">
+    <div class="orbit" id="orbit2"></div>
     <h2 id="titulo2">Catálogo 2</h2>
     <div class="price" id="price2">35$</div>
-    <button onclick="unlock(2)">Desbloquear</button>
+    <button onclick="unlock(2);buttonClickEffect(event)">Desbloquear</button>
     <div id="content2" class="hidden">Descrição do Catálogo 2</div>
-    <button onclick="alert('Pagamento único 35$')">Pagar</button>
+    <button onclick="alert('Pagamento único 35$');buttonClickEffect(event)">Pagar</button>
 </div>
-<div class="card">
+
+<div class="card" id="card3">
+    <div class="orbit" id="orbit3"></div>
     <h2 id="titulo3">Catálogo 3</h2>
     <div class="price" id="price3">45$</div>
-    <button onclick="unlock(3)">Desbloquear</button>
+    <button onclick="unlock(3);buttonClickEffect(event)">Desbloquear</button>
     <div id="content3" class="hidden">Descrição do Catálogo 3</div>
-    <button onclick="alert('Pagamento único 45$')">Pagar</button>
+    <button onclick="alert('Pagamento único 45$');buttonClickEffect(event)">Pagar</button>
 </div>
-<div class="card">
+
+<div class="card" id="card4">
+    <div class="orbit" id="orbit4"></div>
     <h2 id="titulo4">Catálogo 4</h2>
     <div class="price" id="price4">55$</div>
-    <button onclick="unlock(4)">Desbloquear</button>
+    <button onclick="unlock(4);buttonClickEffect(event)">Desbloquear</button>
     <div id="content4" class="hidden">Descrição do Catálogo 4</div>
-    <button onclick="alert('Pagamento único 55$')">Pagar</button>
+    <button onclick="alert('Pagamento único 55$');buttonClickEffect(event)">Pagar</button>
 </div>
-<div class="card">
+
+<div class="card" id="card5">
+    <div class="orbit" id="orbit5"></div>
     <h2 id="titulo5">Catálogo 5</h2>
     <div class="price" id="price5">65$</div>
-    <button onclick="unlock(5)">Desbloquear</button>
+    <button onclick="unlock(5);buttonClickEffect(event)">Desbloquear</button>
     <div id="content5" class="hidden">Descrição do Catálogo 5</div>
-    <button onclick="alert('Pagamento único 65$')">Pagar</button>
+    <button onclick="alert('Pagamento único 65$');buttonClickEffect(event)">Pagar</button>
 </div>
-<div class="card">
+
+<div class="card" id="card6">
+    <div class="orbit" id="orbit6"></div>
     <h2 id="titulo6">Catálogo 6</h2>
     <div class="price" id="price6">75$</div>
-    <button onclick="unlock(6)">Desbloquear</button>
+    <button onclick="unlock(6);buttonClickEffect(event)">Desbloquear</button>
     <div id="content6" class="hidden">Descrição do Catálogo 6</div>
-    <button onclick="alert('Pagamento único 75$')">Pagar</button>
+    <button onclick="alert('Pagamento único 75$');buttonClickEffect(event)">Pagar</button>
 </div>
 
 </div>
@@ -262,18 +274,18 @@ footer{
 </div>
 
 <footer>
-© 2026 ROYAL - Aero Espacial Ultra
+© 2026 ROYAL - Aero Espacial Extremo
 </footer>
 
 <script>
-// ===== Fundo espacial ultra =====
+// ===== Fundo espacial =====
 const canvas = document.getElementById('bgCanvas');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 let stars = [];
-for(let i=0;i<150;i++){
+for(let i=0;i<200;i++){
     stars.push({
         x: Math.random()*canvas.width,
         y: Math.random()*canvas.height,
@@ -321,6 +333,39 @@ window.addEventListener('resize',()=>{
     canvas.height = window.innerHeight;
 });
 
+// ===== Cards com partículas orbitando =====
+function createOrbit(cardId, orbitId){
+    const orbit = document.getElementById(orbitId);
+    const particles = [];
+    const count = 15;
+    for(let i=0;i<count;i++){
+        particles.push({angle: Math.random()*Math.PI*2, distance: 60+Math.random()*20});
+    }
+    function drawOrbit(){
+        orbit.innerHTML='';
+        for(let p of particles){
+            p.angle += 0.02;
+            const x = 50 + p.distance*Math.cos(p.angle);
+            const y = 50 + p.distance*Math.sin(p.angle);
+            const span = document.createElement('span');
+            span.style.position='absolute';
+            span.style.width='6px';
+            span.style.height='6px';
+            span.style.background='#00f0ff';
+            span.style.borderRadius='50%';
+            span.style.left=`${x}%`;
+            span.style.top=`${y}%`;
+            orbit.appendChild(span);
+        }
+        requestAnimationFrame(drawOrbit);
+    }
+    drawOrbit();
+}
+
+for(let i=1;i<=6;i++){
+    createOrbit('card'+i,'orbit'+i);
+}
+
 // ===== ROYAL + Cards + Modo Deus =====
 const senhaAdmin = "171";
 
@@ -364,6 +409,15 @@ for(let i=1;i<=6;i++){
     if(localStorage.getItem("price"+i)) document.getElementById("price"+i).innerText = localStorage.getItem("price"+i)+"$";
     if(localStorage.getItem("titulo"+i)) document.getElementById("titulo"+i).innerText = localStorage.getItem("titulo"+i);
     if(localStorage.getItem("conteudo"+i)) document.getElementById("content"+i).innerText = localStorage.getItem("conteudo"+i);
+}
+
+// ===== Animação clique nos botões =====
+function buttonClickEffect(e){
+    const btn = e.currentTarget;
+    const effect = document.createElement('span');
+    effect.className='button-effect';
+    btn.appendChild(effect);
+    setTimeout(()=>{btn.removeChild(effect)},600);
 }
 </script>
 </body>
