@@ -3,34 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ROYAL</title>
+<title>ROYAL 💎 Futurista</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 
 <style>
 /* ===== BODY ===== */
 body{
     margin:0;
-    background: radial-gradient(circle at center, #0f0c29, #302b63, #24243e);
+    background: radial-gradient(circle at center, #0f0c29, #302b63, #240046);
     font-family: 'Orbitron', sans-serif;
     color:#00fff7;
     text-align:center;
     overflow-x:hidden;
 }
 
-/* ===== TÍTULO 3D CYBERPUNK ===== */
+/* ===== TÍTULO 3D NEON ===== */
 .title-container{
     perspective:1200px;
     margin-top:60px;
 }
 
 .title{
-    font-size:70px;
+    font-size:80px;
     font-weight:900;
-    letter-spacing:5px;
+    letter-spacing:6px;
     background: linear-gradient(45deg,#ff00ff,#00ffff,#ff0055,#00ffea);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     transform-style: preserve-3d;
-    animation: rotate3d 10s linear infinite, glow 2s ease-in-out infinite alternate;
+    animation: rotate3d 8s linear infinite, glow 2s ease-in-out infinite alternate;
 }
 
 @keyframes rotate3d{
@@ -40,7 +41,7 @@ body{
 
 @keyframes glow{
     0%{text-shadow:0 0 10px #ff00ff,0 0 20px #00ffff,0 0 30px #ff0055;}
-    50%{text-shadow:0 0 20px #ff00ff,0 0 40px #00ffff,0 0 60px #ff0055;}
+    50%{text-shadow:0 0 25px #ff00ff,0 0 50px #00ffff,0 0 75px #ff0055;}
     100%{text-shadow:0 0 10px #ff00ff,0 0 20px #00ffff,0 0 30px #ff0055;}
 }
 
@@ -56,14 +57,14 @@ body{
     width:90%;
     max-width:420px;
     border-radius:20px;
-    box-shadow:0 10px 20px rgba(0,255,255,0.3);
+    box-shadow:0 10px 25px rgba(0,255,255,0.3);
     transition:0.4s;
     border:2px solid #00fff7;
 }
 
 .card:hover{
     transform: translateY(-10px) scale(1.05);
-    box-shadow:0 25px 50px rgba(0,255,255,0.8);
+    box-shadow:0 25px 60px rgba(0,255,255,0.8);
 }
 
 .price{
@@ -106,9 +107,9 @@ button:hover{
     background:#1a1a2e;
     border:2px solid #ff00ff;
     border-radius:15px;
+    color:#00fff7;
 }
 
-/* INPUTS ===== */
 input{
     padding:8px 12px;
     border-radius:10px;
@@ -121,8 +122,13 @@ input{
 input::placeholder{
     color:#00ffea;
 }
+footer{
+    margin-top:60px;
+    padding:20px;
+    font-size:14px;
+    color:#ff00ff;
+}
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -132,7 +138,7 @@ input::placeholder{
 
 <div class="section">
 <div class="card">
-    <h2>Nível 1</h2>
+    <h2 id="titulo1">Nível 1</h2>
     <div class="price" id="price1">25$</div>
     <button onclick="unlock(1)">Desbloquear</button>
     <div id="content1" class="hidden">
@@ -141,7 +147,7 @@ input::placeholder{
 </div>
 
 <div class="card">
-    <h2>Nível 2</h2>
+    <h2 id="titulo2">Nível 2</h2>
     <div class="price" id="price2">45$</div>
     <button onclick="unlock(2)">Desbloquear</button>
     <div id="content2" class="hidden">
@@ -150,7 +156,7 @@ input::placeholder{
 </div>
 
 <div class="card">
-    <h2>Nível 3</h2>
+    <h2 id="titulo3">Nível 3</h2>
     <div class="price" id="price3">65$</div>
     <button onclick="unlock(3)">Desbloquear</button>
     <div id="content3" class="hidden">
@@ -159,23 +165,40 @@ input::placeholder{
 </div>
 </div>
 
+<!-- TELEFONE FIXO -->
+<div style="margin-top:30px;">
+<p>Contato: <b>12988729004</b></p>
+</div>
+
 <!-- LOGIN ADMIN -->
-<div style="margin-top:40px;">
-    <input type="password" id="senha" placeholder="Senha Admin">
-    <button onclick="login()">Entrar</button>
+<div style="margin-top:30px;">
+<input type="password" id="senha" placeholder="Senha Admin">
+<button onclick="login()">Entrar</button>
 </div>
 
 <!-- PAINEL MODO DEUS -->
 <div id="adminPanel">
-    <h3>Modo Deus 👑</h3>
-    <input type="number" id="novoPreco1" placeholder="Novo preço Nível 1">
-    <input type="number" id="novoPreco2" placeholder="Novo preço Nível 2">
-    <input type="number" id="novoPreco3" placeholder="Novo preço Nível 3">
-    <br><br>
-    <button onclick="atualizarPrecos()">Salvar Preços</button>
+<h3>Modo Deus 👑</h3>
+
+<h4>Preços</h4>
+<input type="number" id="novoPreco1" placeholder="Novo preço Nível 1">
+<input type="number" id="novoPreco2" placeholder="Novo preço Nível 2">
+<input type="number" id="novoPreco3" placeholder="Novo preço Nível 3">
+
+<h4>Textos</h4>
+<input type="text" id="novoTitulo1" placeholder="Novo título Nível 1">
+<input type="text" id="novoConteudo1" placeholder="Novo conteúdo Nível 1">
+<br>
+<input type="text" id="novoTitulo2" placeholder="Novo título Nível 2">
+<input type="text" id="novoConteudo2" placeholder="Novo conteúdo Nível 2">
+<br>
+<input type="text" id="novoTitulo3" placeholder="Novo título Nível 3">
+<input type="text" id="novoConteudo3" placeholder="Novo conteúdo Nível 3">
+<br><br>
+<button onclick="atualizarTudo()">Salvar Alterações</button>
 </div>
 
-<footer style="color:#ff00ff">
+<footer>
 © 2026 ROYAL - Todos os direitos reservados
 </footer>
 
@@ -196,16 +219,31 @@ function login(){
     }
 }
 
-function atualizarPrecos(){
+function atualizarTudo(){
+    // Preços
     const p1 = document.getElementById("novoPreco1").value;
     const p2 = document.getElementById("novoPreco2").value;
     const p3 = document.getElementById("novoPreco3").value;
-
     if(p1) document.getElementById("price1").innerText = p1 + "$";
     if(p2) document.getElementById("price2").innerText = p2 + "$";
     if(p3) document.getElementById("price3").innerText = p3 + "$";
 
-    alert("Preços atualizados!");
+    // Títulos e conteúdos
+    const t1 = document.getElementById("novoTitulo1").value;
+    const c1 = document.getElementById("novoConteudo1").value;
+    const t2 = document.getElementById("novoTitulo2").value;
+    const c2 = document.getElementById("novoConteudo2").value;
+    const t3 = document.getElementById("novoTitulo3").value;
+    const c3 = document.getElementById("novoConteudo3").value;
+
+    if(t1) document.getElementById("titulo1").innerText = t1;
+    if(c1) document.getElementById("content1").innerText = c1;
+    if(t2) document.getElementById("titulo2").innerText = t2;
+    if(c2) document.getElementById("content2").innerText = c2;
+    if(t3) document.getElementById("titulo3").innerText = t3;
+    if(c3) document.getElementById("content3").innerText = c3;
+
+    alert("Alterações salvas!");
 }
 </script>
 
